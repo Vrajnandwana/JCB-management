@@ -1,17 +1,25 @@
 // routes/dailyLogRoutes.js 
 import express from 'express';
-import { createDailyLog, getLogsBySite } from '../controllers/dailyLogController.js';
+import {
+  createDailyLog,
+  getLogsBySite,
+  updateDailyLog,
+  deleteDailyLog
+} from '../controllers/dailyLogController.js';
 import DailyLog from '../models/DailyLog.js';
 import Site from '../models/Site.js';
 import ExcelJS from 'exceljs';
 
 const router = express.Router();
 
-// ✅ Existing routes
+
+//  Existing routes
 router.post('/', createDailyLog); // POST /api/dailylogs
 router.get('/:siteId', getLogsBySite); // GET /api/dailylogs/:siteId
 
-// ✅ NEW: Download logs as Excel for a site
+router.put('/:logId', updateDailyLog);     // PUT /api/dailylogs/:logId
+router.delete('/:logId', deleteDailyLog);  // DELETE /api/dailylogs/:logId
+//  NEW: Download logs as Excel for a site
 router.get('/download/:siteId', async (req, res) => {
   try {
     const { siteId } = req.params;

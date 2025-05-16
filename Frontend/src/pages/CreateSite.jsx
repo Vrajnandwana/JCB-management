@@ -41,33 +41,90 @@ function CreateSite() {
   };
 
   return (
-    <div className="p-6 max-w-3xl mx-auto bg-white rounded-md shadow-md mt-6">
-      <h2 className="text-2xl font-bold mb-4 text-center">Create New Site</h2>
+    <div className="p-4 sm:p-6 max-w-3xl mx-auto bg-white rounded-md shadow-md mt-6">
+      <h2 className="text-xl sm:text-2xl font-bold mb-6 text-center">Create New Site</h2>
+      
       <form onSubmit={handleSubmit} className="space-y-4">
-        <input type="text" name="siteName" placeholder="Site Name" className="w-full p-2 border rounded" onChange={handleChange} required />
-        <input type="text" name="contractorName" placeholder="Contractor Name" className="w-full p-2 border rounded" onChange={handleChange} required />
-        <input type="text" name="projectType" placeholder="Project Type" className="w-full p-2 border rounded" onChange={handleChange} />
-        <input type="tel" name="phone" placeholder="Phone Number" className="w-full p-2 border rounded" onChange={handleChange} />
-        <input type="text" name="location" placeholder="Location" className="w-full p-2 border rounded" onChange={handleChange} />
-        <input type="date" name="startDate" className="w-full p-2 border rounded" onChange={handleChange} required />
+        <div className="grid sm:grid-cols-2 gap-4">
+          <input
+            type="text"
+            name="siteName"
+            placeholder="Site Name"
+            className="w-full p-2 border rounded"
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="text"
+            name="contractorName"
+            placeholder="Contractor Name"
+            className="w-full p-2 border rounded"
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-        <select name="siteStatus" className="w-full p-2 border rounded" onChange={handleChange}>
+        <div className="grid sm:grid-cols-2 gap-4">
+          <input
+            type="text"
+            name="projectType"
+            placeholder="Project Type"
+            className="w-full p-2 border rounded"
+            onChange={handleChange}
+          />
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Phone Number"
+            className="w-full p-2 border rounded"
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="grid sm:grid-cols-2 gap-4">
+          <input
+            type="text"
+            name="location"
+            placeholder="Location"
+            className="w-full p-2 border rounded"
+            onChange={handleChange}
+          />
+          <input
+            type="date"
+            name="startDate"
+            className="w-full p-2 border rounded"
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <select
+          name="siteStatus"
+          className="w-full p-2 border rounded"
+          onChange={handleChange}
+        >
           <option value="Active">Active</option>
           <option value="On Hold">On Hold</option>
           <option value="Completed">Completed</option>
         </select>
 
-        <textarea name="notes" placeholder="Additional Notes" className="w-full p-2 border rounded" rows="3" onChange={handleChange} />
+        <textarea
+          name="notes"
+          placeholder="Additional Notes"
+          className="w-full p-2 border rounded"
+          rows="3"
+          onChange={handleChange}
+        />
 
         <div>
           <h3 className="font-semibold mb-2">Assigned Machines</h3>
           {formData.machines.map((machine, index) => (
-            <div key={index} className="flex gap-2 mb-2">
+            <div key={index} className="flex flex-col sm:flex-row gap-2 mb-2">
               <input
                 placeholder="Machine Type (e.g., JCB)"
                 value={machine.type}
                 onChange={(e) => handleMachineChange(index, 'type', e.target.value)}
-                className="p-2 border rounded"
+                className="p-2 border rounded w-full sm:w-1/2"
                 required
               />
               <input
@@ -75,17 +132,24 @@ function CreateSite() {
                 type="number"
                 value={machine.hourlyRate}
                 onChange={(e) => handleMachineChange(index, 'hourlyRate', e.target.value)}
-                className="p-2 border rounded"
+                className="p-2 border rounded w-full sm:w-1/2"
                 required
               />
             </div>
           ))}
-          <button type="button" onClick={addMachine} className="bg-gray-200 px-3 py-1 rounded">
+          <button
+            type="button"
+            onClick={addMachine}
+            className="bg-gray-200 hover:bg-gray-300 px-3 py-1 rounded mt-1"
+          >
             + Add Machine
           </button>
         </div>
 
-        <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700">
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700 transition"
+        >
           Submit
         </button>
       </form>

@@ -1,3 +1,4 @@
+//sitecontroller.js
 import Site from '../models/Site.js';
 
 // @desc    Create a new site
