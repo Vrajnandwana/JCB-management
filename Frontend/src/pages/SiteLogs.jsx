@@ -214,7 +214,58 @@ function SiteLogs() {
         <h3 className="text-lg font-semibold mb-3">Edit Log Entry</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {/* Inputs */}
-          {/* ... your input elements here */}
+          <div>
+  <label className="block text-sm font-medium mb-1">Date</label>
+  <input
+    type="date"
+    value={editingLog.date?.substring(0, 10) || ''}
+    onChange={(e) =>
+      setEditingLog((prev) => ({ ...prev, date: e.target.value }))
+    }
+    className="border p-2 rounded w-full"
+  />
+</div>
+
+<div>
+  <label className="block text-sm font-medium mb-1">Machine Type</label>
+  <input
+    type="text"
+    value={editingLog.machineType || ''}
+    onChange={(e) =>
+      setEditingLog((prev) => ({ ...prev, machineType: e.target.value }))
+    }
+    className="border p-2 rounded w-full"
+  />
+</div>
+
+<div>
+  <label className="block text-sm font-medium mb-1">Hours Used</label>
+  <input
+    type="number"
+    min="0"
+    step="0.1"
+    value={editingLog.hoursUsed || ''}
+    onChange={(e) =>
+      setEditingLog((prev) => ({ ...prev, hoursUsed: parseFloat(e.target.value) || 0 }))
+    }
+    className="border p-2 rounded w-full"
+  />
+</div>
+
+<div>
+  <label className="block text-sm font-medium mb-1">Rate (₹)</label>
+  <input
+    type="number"
+    min="0"
+    step="1"
+    value={editingLog.rate || ''}
+    onChange={(e) =>
+      setEditingLog((prev) => ({ ...prev, rate: parseFloat(e.target.value) || 0 }))
+    }
+    className="border p-2 rounded w-full"
+  />
+</div>
+
         </div>
         <div className="mt-4 flex gap-2 flex-wrap">
           <button className="bg-green-600 text-white px-4 py-2 rounded" onClick={submitUpdate}>
